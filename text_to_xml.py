@@ -46,6 +46,7 @@ def file_to_xml(filePath, encoding):
             else:
                 strofa = ET.SubElement(root, "lg")
         xml = ET.ElementTree(root)
+        ET.indent(xml)
 
         dir = os.path.dirname(p[0]) + '/xml'
         if not os.path.exists(dir):
