@@ -19,7 +19,7 @@ parser.add_argument("-encoding", help="text file encoding")
 args = parser.parse_args()
 
 
-def get_XMLs(path, encoding='UTF-8'):
+def get_XMLs(path, encoding="UTF-8"):
     if os.path.isdir(path):
         for fileName in os.listdir(path):
             file_to_xml(path+'/'+fileName, encoding)
@@ -54,4 +54,8 @@ def file_to_xml(filePath, encoding):
 
 
 if __name__ == '__main__':
-    get_XMLs(args.path, args.encoding)
+    if args.encoding:
+        get_XMLs(args.path, args.encoding)
+    else:
+        get_XMLs(args.path)
+
