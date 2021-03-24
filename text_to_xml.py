@@ -24,18 +24,10 @@ args = parser.parse_args()
 def get_XMLs(path, encoding="UTF-8"):
     if os.path.isdir(path):
         for fileName in os.listdir(path):
-            result = file_to_xml(path+'/'+fileName, encoding)
-            if result:
-                print(path+'/'+fileName + "....SUCCESS")
-            else:
-                print(path+'/'+fileName + "....ERROR")
+            file_to_xml(path+'/'+fileName, encoding)
 
     elif os.path.isfile(path):
-        result = file_to_xml(path, encoding)
-        if result:
-            print(path + "....SUCCESS")
-        else:
-            print(path + "....ERROR")
+        file_to_xml(path, encoding)
 
 
 def file_to_xml(filePath, encoding):
@@ -71,11 +63,9 @@ def file_to_xml(filePath, encoding):
         dir = os.path.dirname(p[0]) + '/xml'
         if not os.path.exists(dir):
             os.makedirs(dir)
-        xml.write(dir + '/' + os.path.basename(p[0]) + '.xml', encoding=encoding, xml_declaration=True)
-        return True
-
-    else:
-        return False
+        xmlpath = dir + '/' + os.path.basename(p[0]) + '.xml'
+        xml.write(xmlpath, encoding=encoding, xml_declaration=True)
+        print("SUCCESS...." + xmlpath)
 
 
 if __name__ == '__main__':
