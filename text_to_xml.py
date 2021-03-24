@@ -54,6 +54,9 @@ def file_to_xml(filePath, encoding):
                 strofa = ET.SubElement(root, "lg")
         strofa.attrib['type'] = dict[count]
 
+        comment = ET.Comment('Created by bucchio! visit: https://github.com/JacopoBucchioni/text_to_xml')
+        root.insert(0, comment)
+
         xml = ET.ElementTree(root)
         ET.indent(xml)
 
