@@ -1,2 +1,2 @@
 ## Usage
-Write in a command line: `py "python script path\script name.py" -path="file or folder path" -encoding="text codec" (optional default is utf-8)`
+Write in a command line: `py "python script path.py" -path="file or folder path" -encoding="text codec" (optional default is utf-8)`
