@@ -33,7 +33,6 @@ def get_XMLs(path, encoding="UTF-8"):
 def file_to_xml(filePath, encoding):
     p = os.path.splitext(filePath)
     if p[1] in supportedTextExtension:
-
         file = open(filePath, "r", encoding=encoding)
         text = file.read()
         lines = text.splitlines()
@@ -56,7 +55,6 @@ def file_to_xml(filePath, encoding):
 
         comment = ET.Comment('Created by bucchio! visit: https://github.com/JacopoBucchioni/text_to_xml')
         root.insert(0, comment)
-
         xml = ET.ElementTree(root)
         ET.indent(xml)
 
@@ -65,7 +63,11 @@ def file_to_xml(filePath, encoding):
             os.makedirs(dir)
         xmlpath = dir + '/' + os.path.basename(p[0]) + '.xml'
         xml.write(xmlpath, encoding=encoding, xml_declaration=True)
-        print("SUCCESS...." + xmlpath)
+
+        if os.path.exists(xmlpath):
+            print("SUCCESS...." + xmlpath)
+        else:
+            print("ERROR...." + filePath)
 
 
 if __name__ == '__main__':
