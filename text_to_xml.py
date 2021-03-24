@@ -9,12 +9,12 @@ def dir_path(path):
     if os.path.exists(path):
         return path
     else:
-        raise argparse.ArgumentTypeError(f"{path} is not valid")
+        raise argparse.ArgumentTypeError(f"path is not valid")
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--path", type=dir_path, required=True, help="path of file or directory")
-parser.add_argument("--encoding", help="text file encoding")
+parser.add_argument("-path", type=dir_path, required=True, help="path of file or directory")
+parser.add_argument("-encoding", help="text file encoding")
 
 args = parser.parse_args()
 
