@@ -15,8 +15,8 @@ def dir_path(path):
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-path", type=dir_path, required=True, help="path of file or directory")
-parser.add_argument("-encoding", help="text file encoding")
+parser.add_argument("-p", "--path", type=dir_path, required=True, help="path or directory of files do you want convert (required)")
+parser.add_argument("-e", "--encoding", help="text encoding of files do you want convert (optional delault is utf-8)")
 
 args = parser.parse_args()
 
