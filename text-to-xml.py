@@ -40,6 +40,9 @@ def get_lines(filePath, encoding, extension):
             lines = text.splitlines()
 
         file.close()
+    else:
+        print("Error: " + "'" + filePath + "'" + " file extension is not supported")
+        
     return lines
 
 
@@ -79,9 +82,6 @@ def file_to_xml(filePath, encoding):
             print("SUCCESS...." + xmlpath)
         else:
             print("ERROR...." + filePath)
-
-    else:
-        print("Error: " + "'" + filePath + "'" + " file extension is not supported")
 
 
 if __name__ == '__main__':
