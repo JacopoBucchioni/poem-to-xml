@@ -24,26 +24,29 @@ args = parser.parse_args()
 def get_XMLs(path, encoding="UTF-8"):
     if os.path.isdir(path):
         for fileName in os.listdir(path):
-            file_to_xml(path+'/'+fileName, encoding)
+            file_to_xml(path + '\\' + fileName, encoding)
 
     elif os.path.isfile(path):
         file_to_xml(path, encoding)
 
 
-def get_lines(filePath, encoding):
-    file = open(filePath, "r", encoding=encoding)
-    text = file.read()
-    lines = text.splitlines()
-    file.close()
+def get_lines(filePath, encoding, extension):
+    lines = []
+    if extension in supportedTextExtension:
+        file = open(filePath, "r", encoding=encoding)
+
+        if extension == '.txt':
+            text = file.read()
+            lines = text.splitlines()
+
+        file.close()
     return lines
 
 
 def file_to_xml(filePath, encoding):
     p = os.path.splitext(filePath)
-    if p[1] in supportedTextExtension:
-        if p[1] == '.txt':
-            lines = get_lines(filePath, encoding)
-            
+    lines = get_lines(filePath, encoding, p[1])
+    if lines:
         root = ET.Element("text")
         strofa = ET.SubElement(root, "lg")
         count = 0
@@ -57,23 +60,28 @@ def file_to_xml(filePath, encoding):
                     strofa.attrib['type'] = dict[count]
                 count = 0
                 strofa = ET.SubElement(root, "lg")
-        strofa.attrib['type'] = dict[count]
+        if count in dict:
+            strofa.attrib['type'] = dict[count]
 
         comment = ET.Comment('Created by bucchio! visit: https://github.com/JacopoBucchioni/text_to_xml')
         root.insert(0, comment)
+
         xml = ET.ElementTree(root)
         ET.indent(xml)
 
-        dir = os.path.dirname(p[0]) + '/xml'
+        dir = os.path.dirname(p[0]) + '\\xml'
         if not os.path.exists(dir):
             os.makedirs(dir)
-        xmlpath = dir + '/' + os.path.basename(p[0]) + '.xml'
+        xmlpath = dir + '\\' + os.path.basename(p[0]) + '.xml'
         xml.write(xmlpath, encoding=encoding, xml_declaration=True)
 
         if os.path.exists(xmlpath):
             print("SUCCESS...." + xmlpath)
         else:
             print("ERROR...." + filePath)
+
+    else:
+        print("Error: " + "'" + filePath + "'" + " file extension is not supported")
 
 
 if __name__ == '__main__':
