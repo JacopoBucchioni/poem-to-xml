@@ -63,7 +63,7 @@ def file_to_xml(filePath, encoding):
         if count in dict:
             strofa.attrib['type'] = dict[count]
 
-        comment = ET.Comment('Created by bucchio! visit: https://github.com/JacopoBucchioni/text_to_xml')
+        comment = ET.Comment('Created by bucchio! visit: https://github.com/JacopoBucchioni/text-to-xml')
         root.insert(0, comment)
 
         xml = ET.ElementTree(root)
