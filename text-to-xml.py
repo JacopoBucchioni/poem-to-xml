@@ -40,9 +40,10 @@ def get_lines(filePath, encoding, extension):
             lines = text.splitlines()
 
         file.close()
-    else:
-        print("Error: " + "'" + filePath + "'" + " file extension is not supported")
-        
+
+    elif extension:
+        print("error: " + "'" + filePath + "'" + " file extension is not supported")
+
     return lines
 
 
