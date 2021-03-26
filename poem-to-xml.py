@@ -51,7 +51,7 @@ def file_to_xml(filePath, encoding):
     p = os.path.splitext(filePath)
     lines = get_lines(filePath, encoding, p[1])
     if lines:
-        root = ET.Element("text")
+        root = ET.Element("poem")
         strofa = ET.SubElement(root, "lg")
         count = 0
         for line in lines:
