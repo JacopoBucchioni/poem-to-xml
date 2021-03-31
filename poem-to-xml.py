@@ -1,6 +1,8 @@
 import os
 import argparse
 import xml.etree.ElementTree as ET
+from timeit import default_timer as timer
+
 
 supportedTextExtension = ['.txt']
 
@@ -22,12 +24,19 @@ args = parser.parse_args()
 
 
 def get_XMLs(path, encoding="UTF-8"):
+    start = timer() * 1000
+
     if os.path.isdir(path):
         for fileName in os.listdir(path):
             file_to_xml(path + '\\' + fileName, encoding)
 
     elif os.path.isfile(path):
         file_to_xml(path, encoding)
+
+    end = timer() * 1000
+    time = round(end - start, 2)
+    print()
+    print("Total time: "+str(time)+" ms")
 
 
 def get_lines(filePath, encoding, extension):
