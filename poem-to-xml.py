@@ -3,7 +3,6 @@ import argparse
 import xml.etree.ElementTree as ET
 from timeit import default_timer as timer
 
-
 supportedTextExtension = ['.txt']
 
 dict = {2: 'couplet', 3: 'triplet', 4: 'quatrain', 6: 'sestet', 8: 'octave'}
